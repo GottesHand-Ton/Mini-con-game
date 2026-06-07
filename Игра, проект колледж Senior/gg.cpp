@@ -11,8 +11,8 @@ gg::gg(int startx, int starty) {
 }
 
 void gg::move(int dx, int dy) {
-	x = dx;
-	y = dy;
+	x += dx;
+	y += dy;
 }
 
 void gg::takedamage(int atk) {
@@ -20,8 +20,17 @@ void gg::takedamage(int atk) {
 	cout << "вы получили " << atk << " урона" << endl;
 }
 
+void gg::golocation( int numlocation) {
+	
+}
+
+
+void gg::exitlocanion() {}
+
+
 int gg::gethp() const { return hp; }
 int gg::getdamage() const { return damage; }
 int gg::getx() const { return x; }
 int gg::gety() const { return y; }
+int gg::getlocation() const { return location; };
 

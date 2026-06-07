@@ -9,26 +9,27 @@ private:
 	int maxhp;
 	int damage;
 	int x, y;
+	int location;
 	
 public:
 	gg(int startx, int starty);
 
 
-	void move(int dx, int dy) {
-		x = dx;
-		y = dy;
-	}
+	void move(int dx, int dy);
 
-	void takedamage(int atk) {
-		hp -= atk;
-		cout << "вы получили " << atk << " урона" << endl;
-	}
+
+	void takedamage(int atk);
+
+	void golocation();
+
+	void exitlocanion();
 
 
 	int gethp() const;
 	int getdamage() const;
 	int getx() const;
 	int gety() const;
+	int getlocation() const;
 };
 
 
