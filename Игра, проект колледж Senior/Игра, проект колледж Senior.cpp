@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <windows.h>
+#include <clocale>
 #include <string>
 #include "gg.h"
 #include "map.h"
@@ -15,7 +16,7 @@ int main()
 	cout << "Управление:\nQ - Выход \n \nW - Вверх \nS - Вниз  \nA - Влево  \nD - право \n \nH - Посмотреть характеристики \nI - Открыть инвентарь" << endl;
 
 	while (movechoiceanta != 'q' && movechoiceanta != 'Q') {
-		Mymap.paint(newgg);
+		Mymap.paint(newgg, newgg.getlocation());
 		cout << "Действуй!" << endl;
 		cin >> movechoiceanta;
 
@@ -32,7 +33,7 @@ int main()
 			newgg.move(1, 0);
 		}
 		else {
-			cout << "Зачем ты ударился в стену?" << endl;
+
 		}
 	}
 	return 0;

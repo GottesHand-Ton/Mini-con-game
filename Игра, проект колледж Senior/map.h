@@ -12,7 +12,7 @@ private:
 public:
 	map();
 
-	void paint(const gg& player);
+	void paint(const gg& player, int numlocation);
 
 	int getwidth() const { return width; }
 	int getheight() const { return height; }

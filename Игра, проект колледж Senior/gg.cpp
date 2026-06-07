@@ -8,6 +8,7 @@ gg::gg(int startx, int starty) {
 	 damage = 1;
 	 x = startx;
 	 y = starty;
+	 location = 1;
 }
 
 void gg::move(int dx, int dy) {
@@ -20,12 +21,14 @@ void gg::takedamage(int atk) {
 	cout << "вы получили " << atk << " урона" << endl;
 }
 
-void gg::golocation( int numlocation) {
-	
+void gg::golocation() {
+	location += 1;
 }
 
 
-void gg::exitlocanion() {}
+void gg::exitlocanion() {
+	location -= 1;
+}
 
 
 int gg::gethp() const { return hp; }
