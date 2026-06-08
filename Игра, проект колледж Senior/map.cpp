@@ -20,6 +20,7 @@ map::map() {
 	}
 }
 
+
 void map::paint(const gg& player, int numlocation) {
 
 	int ggx = player.getx();
@@ -37,6 +38,9 @@ void map::paint(const gg& player, int numlocation) {
 			jey[ggx][ggy] = 'A';
 		}
 
+
+		jey[height - 1][width - 1] = '+';
+
 		for (int i = 0; height > i; ++i) {
 			for (int j = 0; width > j; ++j) {
 				cout << jey[i][j] << " ";
@@ -47,11 +51,15 @@ void map::paint(const gg& player, int numlocation) {
 	}
 	else if (numlocation == 2) {
 		cout << "Вы переходите в лавовую долину решёток" << endl;
+		
 		for (int i = 0; height > i; ++i) {
 			for (int j = 0; width > j; ++j) {
 				jey[i][j] = '#';
 			}
 		}
+
+		jey[height - 1][width - 1] = '+';
+		jey[0][0] = '-';
 
 		if (ggx >= 0 && ggx < width && ggy >= 0 && ggy < height) {
 			jey[ggx][ggy] = 'A';
@@ -73,6 +81,9 @@ void map::paint(const gg& player, int numlocation) {
 			}
 		}
 
+		jey[height - 1][width - 1] = '+';
+		jey[0][0] = '-';
+
 		if (ggx >= 0 && ggx < width && ggy >= 0 && ggy < height) {
 			jey[ggx][ggy] = 'A';
 		}
@@ -93,6 +104,9 @@ void map::paint(const gg& player, int numlocation) {
 			}
 		}
 
+		jey[height - 1][width - 1] = '+';
+		jey[0][0] = '-';
+
 		if (ggx >= 0 && ggx < width && ggy >= 0 && ggy < height) {
 			jey[ggx][ggy] = 'A';
 		}
@@ -112,9 +126,8 @@ void map::paint(const gg& player, int numlocation) {
 				jey[i][j] = '?';
 			}
 		}
-
-
-
+		jey[height - 1][width - 1] = '+';
+		jey[0][0] = '-';
 		if (ggx >= 0 && ggx < width && ggy >= 0 && ggy < height) {
 			jey[ggx][ggy] = 'A';
 		}

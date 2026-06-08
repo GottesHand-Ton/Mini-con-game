@@ -10,30 +10,40 @@ int main()
 {
 	setlocale(LC_ALL, "Russian");
     gg newgg(4, 4);
-    map Mymap{};
+    map mymap{};
 
-	char movechoiceanta = ' ';
+	char movechoice = ' ';
 	cout << "Управление:\nQ - Выход \n \nW - Вверх \nS - Вниз  \nA - Влево  \nD - право \n \nH - Посмотреть характеристики \nI - Открыть инвентарь" << endl;
 
-	while (movechoiceanta != 'q' && movechoiceanta != 'Q') {
-		Mymap.paint(newgg, newgg.getlocation());
-		cout << "Действуй!" << endl;
-		cin >> movechoiceanta;
+	while (movechoice != 'q' && movechoice != 'Q') {
+		mymap.paint(newgg, newgg.getlocation());
 
-		if ((movechoiceanta == 'a' || movechoiceanta == 'A') && newgg.gety() > 0) {
-			newgg.move(0, -1);
+		if (newgg.getx() == mymap.getwidth() - 1 && newgg.gety() == mymap.getheight() - 1) {
+			newgg.golocation();
 		}
-		else if ((movechoiceanta == 'd' || movechoiceanta == 'D') && newgg.gety() < 8) {
-			newgg.move(0, 1);
+		else if (newgg.getx() == 0 && newgg.gety() == 0) {
+			newgg.exitlocanion();
 		}
-		else if ((movechoiceanta == 'w' || movechoiceanta == 'W') && newgg.getx() > 0) {
-			newgg.move(-1, 0);
-		}
-		else if ((movechoiceanta == 's' || movechoiceanta == 'S') && newgg.getx() < 8) {
-			newgg.move(1, 0);
-		}
+
 		else {
+			cout << "Действуй!" << endl;
+			cin >> movechoice;
 
+			if ((movechoice == 'a' || movechoice == 'A') && newgg.gety() > 0) {
+				newgg.move(0, -1);
+			}
+			else if ((movechoice == 'd' || movechoice == 'D') && newgg.gety() < 8) {
+				newgg.move(0, 1);
+			}
+			else if ((movechoice == 'w' || movechoice == 'W') && newgg.getx() > 0) {
+				newgg.move(-1, 0);
+			}
+			else if ((movechoice == 's' || movechoice == 'S') && newgg.getx() < 8) {
+				newgg.move(1, 0);
+			}
+			else {
+
+			}
 		}
 	}
 	return 0;

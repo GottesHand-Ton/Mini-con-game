@@ -2,6 +2,7 @@
 #include <iostream>
 using namespace std;
 
+
 gg::gg(int startx, int starty) {
 	 maxhp = 10;
 	 hp = maxhp;
@@ -23,11 +24,15 @@ void gg::takedamage(int atk) {
 
 void gg::golocation() {
 	location += 1;
+	x = 0;
+	y = 1;
 }
 
 
 void gg::exitlocanion() {
 	location -= 1;
+	x = 7;
+	y = 8;
 }
 
 
