@@ -4,51 +4,71 @@
 #include <string>
 #include "gg.h"
 #include "map.h"
+
 using namespace std;
 
 int main()
 {
-	setlocale(LC_ALL, "Russian");
+    setlocale(LC_ALL, "Russian");
     gg newgg(4, 4);
     map mymap{};
 
-	char movechoice = ' ';
-	cout << "Управление:\nQ - Выход \n \nW - Вверх \nS - Вниз  \nA - Влево  \nD - право \n \nH - Посмотреть характеристики \nI - Открыть инвентарь" << endl;
+    char movechoice = ' ';
+    cout << "Управление:\nQ - Выход \n \nW - Вверх \nS - Вниз  \nA - Влево  \nD - право \n \nH - Посмотреть характеристики \nI - Открыть инвентарь" << endl;
 
-	while (movechoice != 'q' && movechoice != 'Q') {
-		mymap.paint(newgg, newgg.getlocation());
+    while (movechoice != 'q' && movechoice != 'Q') {
+        mymap.paint(newgg);
 
-		if (newgg.getx() == mymap.getwidth() - 1 && newgg.gety() == mymap.getheight() - 1) {
-			newgg.golocation();
-		}
-		else if (newgg.getx() == 0 && newgg.gety() == 0) {
-			newgg.exitlocanion();
-		}
+        cout << "Действуй!" << endl;
+        cin >> movechoice;
 
-		else {
-			cout << "Действуй!" << endl;
-			cin >> movechoice;
+        int nextX = newgg.getx();
+        int nextY = newgg.gety();
+        int dx = 0;
+        int dy = 0;
+        bool wantToMove = false;
 
-			if ((movechoice == 'a' || movechoice == 'A') && newgg.gety() > 0) {
-				newgg.move(0, -1);
-			}
-			else if ((movechoice == 'd' || movechoice == 'D') && newgg.gety() < 8) {
-				newgg.move(0, 1);
-			}
-			else if ((movechoice == 'w' || movechoice == 'W') && newgg.getx() > 0) {
-				newgg.move(-1, 0);
-			}
-			else if ((movechoice == 's' || movechoice == 'S') && newgg.getx() < 8) {
-				newgg.move(1, 0);
-			}
-			else {
+        if (movechoice == 'a' || movechoice == 'A') {
+            nextY = newgg.gety() - 1;
+            dy = -1;
+            wantToMove = true;
+        }
+        else if (movechoice == 'd' || movechoice == 'D') {
+            nextY = newgg.gety() + 1;
+            dy = 1;
+            wantToMove = true;
+        }
+        else if (movechoice == 'w' || movechoice == 'W') {
+            nextX = newgg.getx() - 1;
+            dx = -1;
+            wantToMove = true;
+        }
+        else if (movechoice == 's' || movechoice == 'S') {
+            nextX = newgg.getx() + 1;
+            dx = 1;
+            wantToMove = true;
+        }
 
-			}
-		}
-	}
-	return 0;
+        if (wantToMove) {
+            if (nextX >= 0 && nextX < mymap.getheight() && nextY >= 0 && nextY < mymap.getwidth()) {
+                char targetCell = mymap.getCell(nextX, nextY);
 
+                if (targetCell != '#') {
+                    newgg.move(dx, dy);
+
+                    if (targetCell == 'D') {
+                        if (nextX == 7 && nextY == 8) {
+                            newgg.golocation();
+                            mymap.loadLocation(newgg.getlocation());
+                        }
+                        else if (nextX == 1 && nextY == 0) {
+                            newgg.exitlocanion();
+                            mymap.loadLocation(newgg.getlocation());
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return 0;
 }
-
-
-

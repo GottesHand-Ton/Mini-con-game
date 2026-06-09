@@ -1,25 +1,23 @@
 #ifndef MAP_H
 #define MAP_H
-#include "gg.h"
+
+#include "gg.h" // Теперь подключаем напрямую, чтобы paint знал структуру класса
 
 class map {
 private:
-	static const int height = 9;
-	static const int width = 9;
-	char jey[height][width];
-
+    static const int height = 9;
+    static const int width = 9;
+    char jey[height][width];
 
 public:
-	map();
+    map();
 
-	void paint(const gg& player, int numlocation);
+    void loadLocation(int numlocation);
+    void paint(const gg& player);
 
-
-	int getwidth() const { return width; }
-	int getheight() const { return height; }
+    char getCell(int x, int y) const { return jey[x][y]; }
+    int getwidth() const { return width; }
+    int getheight() const { return height; }
 };
-
-
-
 
 #endif

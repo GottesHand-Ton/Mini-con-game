@@ -1,38 +1,27 @@
-#include <iostream>
 #ifndef GG_H
 #define GG_H
-using namespace std;
 
 class gg {
 private:
-	int hp;
-	int maxhp;
-	int damage;
-	int x, y;
-	int location;
-	
+    int hp;
+    int maxhp;
+    int damage;
+    int x, y;
+    int location;
+
 public:
-	gg(int startx, int starty);
+    gg(int startx, int starty);
 
+    void move(int dx, int dy);
+    void takedamage(int atk);
+    void golocation();
+    void exitlocanion();
 
-	void move(int dx, int dy);
-
-
-	void takedamage(int atk);
-
-	void golocation();
-
-	void exitlocanion();
-
-
-	int gethp() const;
-	int getdamage() const;
-	int getx() const;
-	int gety() const;
-	int getlocation() const;
+    int gethp() const;
+    int getdamage() const;
+    int getx() const;
+    int gety() const;
+    int getlocation() const;
 };
-
-
-
 
 #endif
