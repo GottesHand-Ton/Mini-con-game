@@ -8,6 +8,13 @@ using namespace std;
 map::map() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
+
+    locOpened[1] = true;
+    for (int i = 2; i <= 5; i++) locOpened[i] = false;
+    for (int i = 1; i <= 5; i++) {
+        chestOpened[i] = false;
+        npcInteracted[i] = false;
+    }
     loadLocation(1);
 }
 
@@ -81,6 +88,22 @@ void map::loadLocation(int numlocation) {
             {'#', '#', '#', '#', '#', '#', '#', '#', '#'}
         };
         memcpy(jey, stage5, sizeof(jey));
+    }
+
+
+    if (chestOpened[numlocation]) {
+        clearCell(2, 3); clearCell(5, 1); clearCell(4, 1);
+    }
+    if (npcInteracted[numlocation]) {
+        clearCell(4, 5);
+    }
+}
+
+void map::clearCell(int x, int y) {
+    if (x >= 0 && x < height && y >= 0 && y < width) {
+        if (jey[x][y] == 'C' || jey[x][y] == 'N') {
+            jey[x][y] = '.';
+        }
     }
 }
 
