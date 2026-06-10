@@ -54,8 +54,6 @@ int main()
                 char targetCell = mymap.getCell(nextX, nextY);
 
                 if (targetCell != '#') {
-                    newgg.move(dx, dy);
-
                     if (targetCell == 'D') {
                         if (nextX == 7 && nextY == 8) {
                             newgg.golocation();
@@ -66,6 +64,11 @@ int main()
                             mymap.loadLocation(newgg.getlocation());
                         }
                     }
+                    else {
+                        newgg.move(dx, dy);
+                    }
+
+                    system("cls");
                 }
             }
         }
