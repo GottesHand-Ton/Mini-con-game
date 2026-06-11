@@ -10,6 +10,24 @@
 
 using namespace std;
 
+void clearScreen() {
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
+
+void pauseScreen() {
+#ifdef _WIN32
+    system("pause");
+#else
+    std::cout << "Нажмите Enter для продолжения...";
+    std::cin.ignore(10000, '\n');
+    std::cin.get();
+#endif
+}
+
 void logEvent(const string& message) {
     ofstream logFile("log.txt", ios::app);
     if (logFile.is_open()) {
@@ -105,7 +123,7 @@ void startCombat(gg& player, string enemyName, int enemyHp, int enemyAtk) {
             continue;
         }
         else {
-            cout << "Вы трусливо сбежали!" << endl;
+            cout << "Вы трусливо сбежали блин!" << endl;
             logEvent("Игрок сбежал из боя.");
             return;
         }

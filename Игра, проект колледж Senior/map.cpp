@@ -1,13 +1,18 @@
 #include "map.h"
 #include <iostream>
-#include <windows.h>
 #include <cstring>
+
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 using namespace std;
 
 map::map() {
+#ifdef _WIN32
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
+#endif
 
     locOpened[1] = true;
     for (int i = 2; i <= 5; i++) locOpened[i] = false;
@@ -39,8 +44,8 @@ void map::loadLocation(int numlocation) {
             {'D', '.', '#', '.', '.', '.', '#', '.', '#'},
             {'#', '.', '#', '.', '#', '.', '#', '.', '#'},
             {'#', '.', '.', '.', '#', '.', '.', '.', '#'},
-            {'#', '#', '#', '.', '#', '#', '#', '.', '#'},
-            {'#', 'C', '#', '.', '.', '.', '#', '.', '#'},
+            {'#', 'C', '#', '.', '#', '#', '#', '.', '#'},
+            {'#', '#', '#', '.', '.', '.', '#', '.', '#'},
             {'#', '.', '#', '#', '#', '.', '#', '.', '#'},
             {'#', '.', '.', '.', '#', '.', '.', '.', 'D'},
             {'#', '#', '#', '#', '#', '#', '#', '#', '#'}
